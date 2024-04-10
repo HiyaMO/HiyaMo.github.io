@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+            margin: 0; 
+        }
+        .muyu {
+            transition: 0.2s;
+            position: absolute;
+        }
+        .dong {
+            width: 180px;
+            height: 100px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            position: absolute;
+            left: 200px;
+            top: 0px;
+            animation: up 0.8s;
+            transition: 0.8s;
+            opacity: 0;
+        }
+        @keyframes up {
+            0% {
+                top: 0px;
+            }
+            50% {
+                top: -20px;
+                opacity: 1;
+            }
+            100% {
+                top: -40px;
+                opacity: 0;
+            }
+        }
+        .ff {
+            height: 400px;
+            width: 500px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="ff">
+        <img src="木鱼.jpg" alt="" height="300px" width='400px' class="muyu">
+    </div>
+    
+    <script>
+        let text;
+        let pendingClick = false;
+        const muyu = document.querySelector('.muyu');
+        const ff = document.querySelector('.ff');
+        function handleClick() {
+            if (pendingClick) return;
+            pendingClick = true;
+            muyu.style.transform = 'scale(0.7)';
+            text = document.createElement("div");
+            text.className = "dong";
+            text.textContent = "不饿 + 1";
+            ff.appendChild(text);
+            
+            setTimeout(() => {
+                muyu.style.transform = 'scale(1.0)';
+                ff.removeChild(text);
+                pendingClick = false;
+            }, 200);
+        }
+        muyu.addEventListener('click', handleClick);
+    </script>  
+</body>
+</html>
